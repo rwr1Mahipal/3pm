@@ -83,16 +83,50 @@ class Singly{
         temp->next=NULL;
     }
 
+    void update(int pos, int val){
+        Node* temp = head;
+        for(int i=0; i<pos; i++){
+            if(temp == NULL){
+                cout<<"POS is out list"<<endl;
+                return;
+            }
+            temp=temp->next;
+        }
+        temp->data=val;
+        cout<<val<<" Value add at " <<pos<<" pos"<<endl;
+    }
+
+    void reverse(){
+        if(head==NULL){
+             cout<<"List is empty"<<endl;
+            return;
+        }
+
+        Node* pre = NULL;
+        Node* cur = head;
+        Node* next = NULL;
+
+        while(cur != NULL){
+            next=cur->next;
+            cur->next=pre;
+            pre=cur;
+            cur=next;
+        }
+        head=pre;
+    }
+
 };
 
 int main(){
     Singly s;
 
-    s.addAtBeg(10);
     s.addAtBeg(100);
-    // s.addAtEnd(20);
-    // s.addAtEnd(200);
+    s.addAtBeg(10);
+    s.addAtEnd(20);
+    s.addAtEnd(200);
     // s.deleteAtBeg();
-    s.deleteAtEnd();
+    // s.deleteAtEnd();
+    // s.update(3, 500);
+    // s.reverse();
     s.display();
 }
